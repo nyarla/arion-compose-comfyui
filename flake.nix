@@ -5,11 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils.inputs.systems.follows = "systems";
-
-    flake-compat.url = "github:NixOS/flake-compat";
-    flake-compat.flake = false;
-
-    self.submodules = true;
   };
 
   outputs =
