@@ -2,7 +2,7 @@
   inputs = {
     systems.url = "github:nix-systems/default";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils.inputs.systems.follows = "systems";
 
@@ -26,9 +26,12 @@
         name = "comfyui";
         packages = with legacyPackages; [
           arion
+
+          git
+          nodejs
         ];
 
-        shellHooks = ''
+        shellHook = ''
           if [[ -e /run/user/$(id -u)/podman/podman.sock ]]; then
             alias podman="DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock podman"
             alias arion="DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock arion"
